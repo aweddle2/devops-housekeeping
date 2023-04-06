@@ -1,1 +1,21 @@
-<p>settings works!</p>
+<h2>Settings</h2>
+
+<form [formGroup]="settingsForm">
+    <mat-form-field class="">
+        <mat-label>Azure DevOps Organisation</mat-label>
+        <input matInput value="" placeholder="fabrikam" name="azure_devops_organisation" id="azure_devops_organisation"
+            formControlName="azure_devops_organisation">
+    </mat-form-field>
+
+    <mat-form-field class="">
+        <mat-label>Azure DevOps Auth Token</mat-label>
+        <input matInput value="" type="password" name="azure_devops_auth_token" id="azure_devops_auth_token"
+            formControlName="azure_devops_auth_token">
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" (click)="saveSettings();">
+        Save
+    </button>
+
+</form>
