@@ -1,5 +1,10 @@
 # DevopsHousekeeping
 
+A front-end only application to allow speedy housekeeping decisions about your DevOps environment.  Gives enough information to be able to cull git repos, builds, deployments, wiki pages etc that may be festering in the corner.
+
+Only uses Browser Storage and the REST Api's of your chosen DevOps application.  The app does not transmit anything to a 3rd party.  Authentication is needed.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.3.
 
 ## Development server
