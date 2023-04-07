@@ -8,13 +8,13 @@ import { GitRepo } from '../models/git-repo';
   styleUrls: ['./list-repo.component.less']
 })
 export class ListRepoComponent implements OnInit {
-
+  displayedColumns: string[] = ['id', 'name', 'remoteUrl'];
   public repoList: GitRepo[] = [];
 
   constructor(@Inject('DevOpsService') public devOpsService: DevOpsService) {
   }
   ngOnInit(): void {
-    this.devOpsService.getGitRepos(1).then(value => this.repoList == value);
+    this.devOpsService.getGitRepos(1).subscribe(value => this.repoList == value);
   }
 
 }

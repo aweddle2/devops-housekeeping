@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ListRepoComponent } from './list-repo/list-repo.component';
 import { AzureDevOpsService } from './services/azure-dev-ops.service';
 import { DevOpsService } from './services/dev-ops-service';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -31,6 +32,7 @@ import { DevOpsService } from './services/dev-ops-service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

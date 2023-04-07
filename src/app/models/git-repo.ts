@@ -1,5 +1,5 @@
 export class GitRepo {
+    public id: string = '';
     public name: string = '';
-    public url: string = '';
-
+    public remoteUrl: string = '';
 }
