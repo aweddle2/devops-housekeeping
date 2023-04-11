@@ -5,12 +5,13 @@ import { SettingsService } from '../settings/settings.service';
 import { GitRepo } from '../models/git-repo';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Buffer } from 'buffer';
+import { GitRepoResponse } from '../models/git-repo-response';
 
 @Injectable()
 export class AzureDevOpsService implements DevOpsService {
 
   public baseUrl: string = '';
-  public httpOptions: any = null;
+  public httpHeaders: HttpHeaders = new HttpHeaders();
 
   constructor(public http: HttpClient, public settingsService: SettingsService) {
     var azure_devops_organisation = settingsService.getSetting('azure_devops_organisation');
@@ -18,18 +19,15 @@ export class AzureDevOpsService implements DevOpsService {
 
     var azure_devops_auth_token = settingsService.getSetting('azure_devops_auth_token');
 
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + Buffer.from(azure_devops_auth_token).toString('base64')
-      })
-    };
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + Buffer.from(":" + azure_devops_auth_token).toString('base64')
+    });
 
   }
 
-  getGitRepos(page: number): Observable<GitRepo[]> {
-    return this.http.get<GitRepo[]>(this.baseUrl + "git/repositories").pipe(catchError(this.handleError<GitRepo[]>('GitRepo[]', []))
-    );
+  getGitRepos(page: number): Observable<GitRepoResponse> {
+    return this.http.get<GitRepoResponse>(this.baseUrl + "git/repositories", { headers: this.httpHeaders }).pipe(catchError(this.handleError<GitRepoResponse>('GitRepoResponse',)));
   }
 
   /**

@@ -9,12 +9,12 @@ import { GitRepo } from '../models/git-repo';
 })
 export class ListRepoComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'remoteUrl'];
-  public repoList: GitRepo[] = [];
+  public repoList: GitRepo[];
 
   constructor(@Inject('DevOpsService') public devOpsService: DevOpsService) {
+    this.repoList = [];
   }
   ngOnInit(): void {
-    this.devOpsService.getGitRepos(1).subscribe(value => this.repoList == value);
+    this.devOpsService.getGitRepos(1).subscribe(value => this.repoList = value.value);
   }
-
 }
